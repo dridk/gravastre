@@ -15,6 +15,7 @@ eng::Astre::Astre(double mass, double radius, double pos_x, double pos_y,
     this->color = color;
     this->visible = true;
     this->nullified = false;
+    //Q_ASSERT
     assert(mass != 0.);
     // debug
     dist_to_sun_min = -1;

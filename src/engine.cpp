@@ -4,6 +4,7 @@
 void eng::Engine::add_astre(double mass, double pos_x, double pos_y,
                             double speed_x, double speed_y,
                             std::string name, QColor color) {
+    //Q_ASSERT_X pour avoir un message
     assert(mass > 0.);
 
     double radius = Astre::mass_to_radius(mass);
@@ -16,6 +17,7 @@ void eng::Engine::add_astre(double mass, double pos_x, double pos_y,
         speed_x_px, speed_y_px,
         name, color
     ));
+    // qDebug()<< sans endl .. Accepte les type Qt ! qDebug()<<vector2d;
     std::cout << "Creation of " << name << ", new Astre at" << std::endl
               << "\tmass=" << mass << "; radius=" << radius << std::endl
               << "\tposition=(" << pos_x << ";"
@@ -30,6 +32,11 @@ void eng::Engine::update() {
     std::list<Astre*>::iterator it_astres = this->astres.begin();
     std::list<Astre*>::iterator it_interactor = this->astres.begin();
     // make the astre consider themselves, and handle collisions
+
+    // Iterable
+    // foreach ( QString i , stringList ) {}
+
+
     for(; it_astres != this->astres.end(); it_astres++) {
         it_interactor = it_astres;
         it_interactor++;  // don't perform interactions between same astres
@@ -77,6 +84,8 @@ void eng::Engine::clear_all() {
     // then free then all.
     it_astres = this->astres.begin();
     for(; it_astres != this->astres.end(); it_astres++) {
+        // delete[] it_astres
+        // qDeleteAll(list)
         delete (*it_astres);
         it_astres = this->astres.erase(it_astres);
     }

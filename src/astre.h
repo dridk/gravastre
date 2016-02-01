@@ -6,6 +6,7 @@
 #include <assert.h>
 #include <cmath>
 #include <QColor>
+#include <QVector2D>
 #include "converters.h"
 
 
@@ -38,11 +39,16 @@ namespace eng {
 
     private:
         double mass, radius; // mass in kg, radius in pixel
+
+//Tout remplacer par QVector2D
+
         double position_x, position_y; // position in astronomic unit
         double speed_x, speed_y; // speed in meter per second
         double accel_x, accel_y;
+ // isVisible , isNullified
         bool visible;
         bool nullified;
+ //QString
         std::string name;
         double dist_to_sun_min, dist_to_sun_max; // debug
         QColor color;

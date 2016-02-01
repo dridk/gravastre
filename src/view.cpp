@@ -43,6 +43,7 @@ void view::Universe::paintEvent(QPaintEvent*) {
     // print astres
     QPoint astre_center;
     eng::Engine::AstreIterator it = this->engine.begin();
+    // foreach ..
     for(; it != this->engine.end() ; it++) {
         astre_center.setX(unit::au_to_pixel((*it)->getX()));
         astre_center.setY(unit::au_to_pixel((*it)->getY()));
@@ -135,6 +136,8 @@ void view::Universe::keyPressEvent(QKeyEvent* event) {
 
 
 QPoint view::Universe::global_to_relative(const QPoint& point) const {
+    // QVector.toPoint()
+
     return QPoint(point + this->drag_translation.toPoint());
 }
 QPoint view::Universe::global_to_relative(const QPointF& point) const {

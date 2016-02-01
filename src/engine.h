@@ -3,7 +3,9 @@
 #include <iostream>
 #include <list>
 #include <assert.h>
+// #include <QtMath>
 #include <cmath>
+
 #include "converters.h"
 #include "astre.h"
 
@@ -26,6 +28,7 @@ namespace eng {
         AstreIterator end() { return astres.end(); };
 
     private:
+        // QList
         std::list<Astre*> astres;
 
     };
