@@ -13,14 +13,14 @@
 
 namespace view {
 
-    class Universe : public QWidget {
+    class UniverseWidget : public QWidget {
     Q_OBJECT
 
     public slots:
         void update_engine();
 
     public:
-        Universe(eng::Engine&, QWidget *parent = 0);
+        UniverseWidget(eng::Engine&, QWidget *parent = 0);
 
         virtual void paintEvent(QPaintEvent*);
         virtual void mousePressEvent(QMouseEvent*);

@@ -2,7 +2,7 @@
 #include "view.h"
 
 
-view::Universe::Universe(eng::Engine& engine, QWidget* parent) :
+view::UniverseWidget::UniverseWidget(eng::Engine& engine, QWidget* parent) :
                          engine(engine), QWidget(parent) {
     this->placement_line.setLine(0,0,0,0);
     this->setMouseTracking(true);
@@ -21,15 +21,16 @@ view::Universe::Universe(eng::Engine& engine, QWidget* parent) :
 }
 
 
-void view::Universe::update_engine() {
+void view::UniverseWidget::update_engine() {
     this->engine.update();
     update();
 }
 
 
-void view::Universe::paintEvent(QPaintEvent*) {
+void view::UniverseWidget::paintEvent(QPaintEvent*) {
     QPen default_pen(Qt::transparent);
     QPainter painter(this);
+    painter.setRenderHint(QPainter::HighQualityAntialiasing);
     painter.setBrush(QBrush(Qt::black));  // fill color
     painter.setPen(default_pen);  // outline color
     painter.drawRect(rect());
@@ -57,7 +58,7 @@ void view::Universe::paintEvent(QPaintEvent*) {
 }
 
 
-void view::Universe::mousePressEvent(QMouseEvent* event) {
+void view::UniverseWidget::mousePressEvent(QMouseEvent* event) {
     //std::cout << "Clic detected at:" << std::endl
               //<< "\tevent->pos():" << event->pos().x() << ";" << event->pos().y() << std::endl
               //<< "\tevent->localPos():" << event->localPos().x() << ";" << event->localPos().y() << std::endl
@@ -78,9 +79,9 @@ void view::Universe::mousePressEvent(QMouseEvent* event) {
 }
 
 
-void view::Universe::mouseMoveEvent(QMouseEvent* event) {
+void view::UniverseWidget::mouseMoveEvent(QMouseEvent* event) {
     if(this->drag_placement) {
-        this->placement_line.setP2(Universe::global_to_relative(event->pos()));
+        this->placement_line.setP2(UniverseWidget::global_to_relative(event->pos()));
         update();
     } else if(this->drag_translation) {
         this->drag_translation_x += event->x() - this->space_ref_x;
@@ -91,7 +92,7 @@ void view::Universe::mouseMoveEvent(QMouseEvent* event) {
 }
 
 
-void view::Universe::mouseReleaseEvent(QMouseEvent* event) {
+void view::UniverseWidget::mouseReleaseEvent(QMouseEvent* event) {
     if(event->button() == Qt::LeftButton) {
         double speed_x = this->placement_line.x2() - this->placement_line.x1();
         double speed_y = this->placement_line.y2() - this->placement_line.y1();
@@ -111,7 +112,7 @@ void view::Universe::mouseReleaseEvent(QMouseEvent* event) {
 }
 
 
-void view::Universe::keyPressEvent(QKeyEvent* event) {
+void view::UniverseWidget::keyPressEvent(QKeyEvent* event) {
     if(event->key() == Qt::Key_E) {
         this->selected_mass *= 10;
         std::cout << "selected mass increased to " << this->selected_mass << std::endl;
@@ -134,11 +135,11 @@ void view::Universe::keyPressEvent(QKeyEvent* event) {
 }
 
 
-QPoint view::Universe::global_to_relative(const QPoint& point) const {
+QPoint view::UniverseWidget::global_to_relative(const QPoint& point) const {
     return QPoint(point.x() + this->drag_translation_x,
                   point.y() + this->drag_translation_y);
 }
-QPoint view::Universe::global_to_relative(const QPointF& point) const {
+QPoint view::UniverseWidget::global_to_relative(const QPointF& point) const {
     return QPoint(point.x() + this->drag_translation_x,
                   point.y() + this->drag_translation_y);
 }

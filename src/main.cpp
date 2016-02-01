@@ -1,7 +1,10 @@
 #include <QApplication>
 #include <iostream>
+#include <QGraphicsView>
+#include <QGraphicsScene>
 #include "engine.h"
 #include "view.h"
+#include "spaceview.h"
 
 // random number generator intialization
 #include <random>
@@ -43,8 +46,16 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    view::Universe universe_view(engine);
-    universe_view.show();
+
+    view::UniverseWidget universe_widget(engine);
+
+    SpaceView sview;
+    sview.setUniverseWidget(&universe_widget);
+
+
+    sview.show();
+
+
 
     return qapp.exec();
 }
