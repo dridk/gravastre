@@ -7,6 +7,7 @@
 #include <QMouseEvent>
 #include <QTimer>
 #include <iostream>
+#include <QVector2D>
 #include "engine.h"
 #include "astre.h"
 
@@ -35,8 +36,10 @@ namespace view {
         QLine placement_line;
         QPainter painter;
         QTimer update_call;
-        bool drag_placement, drag_translation;
+        bool is_drag_placement, is_drag_translation;
         double drag_translation_x, drag_translation_y;
+        QPointF drag_translation;
+        QPointF space_ref;
         double space_ref_x, space_ref_y;
         double selected_mass;
         double selected_speed;  // the bigger is, the speedy will be the new astre

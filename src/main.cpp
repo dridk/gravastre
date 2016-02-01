@@ -1,5 +1,6 @@
 #include <QApplication>
 #include <iostream>
+#include <QDebug>
 #include "engine.h"
 #include "view.h"
 
@@ -25,11 +26,11 @@ int main(int argc, char *argv[]) {
         engine.add_astre(5.98e24,    2,   1,      0,  29.82,   "earth", Qt::blue);
         engine.add_astre(7.34e22,2.00257, 1,      0,  30.82,    "moon", Qt::white);
         engine.add_astre(5.98e24,  2.5,   1,      0,  24.35,    "mars", Qt::red);
-        std::cout << "KILOMETER_PER_PIXEL = " << KILOMETER_PER_PIXEL << std::endl;
-        std::cout << "PIXEL_PER_KILOMETER = " << PIXEL_PER_KILOMETER << std::endl;
-        std::cout << "   KILOMETER_PER_AU = " << KILOMETER_PER_AU << std::endl;
-        std::cout << "    METER_PER_PIXEL = " << METER_PER_PIXEL << std::endl;
-        std::cout << "    PIXEL_PER_METER = " << PIXEL_PER_METER << std::endl;
+        qDebug() << "KILOMETER_PER_PIXEL = " << KILOMETER_PER_PIXEL ;
+        qDebug() << "PIXEL_PER_KILOMETER = " << PIXEL_PER_KILOMETER;
+        qDebug() << "   KILOMETER_PER_AU = " << KILOMETER_PER_AU ;
+        qDebug() << "    METER_PER_PIXEL = " << METER_PER_PIXEL;
+        qDebug() << "    PIXEL_PER_METER = " << PIXEL_PER_METER ;
     } else {
         std::uniform_int_distribution<int> distribution_pos(0,200);
         std::uniform_int_distribution<int> distribution_spd(-3,3);
