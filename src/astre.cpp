@@ -88,6 +88,8 @@ void eng::Astre::nullify() {
 /**
  * Return a distance in AU
  */
+
+// QVector2D::distanceToPoint
 double eng::Astre::distTo(const Astre* const othr) const {
     // while the position_x and position_y attributes are in AU,
     //   no conversion is necessary.
